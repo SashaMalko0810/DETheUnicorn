@@ -1,29 +1,23 @@
 -----------------------------------------------------------------------------------------
--- main_menu.lua
+--
+-- level1_screen.lua
 -- Created by: Sasha Malko
 -- Date: April 9, 2018
--- Description: This is the main menu, displaying the credits, instructions & play buttons.
+-- Description: This is the level 1 screen of the game.
 -----------------------------------------------------------------------------------------
-
---hide the status bar
-display.setStatusBar(display.HiddenStatusBar)
 
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
 
--- Use Composer Library
+-- Use Composer Libraries
 local composer = require( "composer" )
-
------------------------------------------------------------------------------------------
-
--- Use Widget Library
 local widget = require( "widget" )
 
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "main_menu"
+sceneName = "level1_screen"
 
 -----------------------------------------------------------------------------------------
 
@@ -34,19 +28,12 @@ local scene = composer.newScene( sceneName )
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
+-- The local variables for this scene
 local bkg_image
-local playButton
-local creditsButton
-local instructionsButton
-
---Sounds
---local easy = audio.loadSound("Sounds/easy.mp3")
---local easyChannel
 
 -----------------------------------------------------------------------------------------
--- LOCAL FUNCTIONS
+-- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
-
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -55,13 +42,24 @@ function scene:create( event )
     local sceneGroup = self.view
 
     -----------------------------------------------------------------------------------------
-    -- BACKGROUND IMAGE & STATIC OBJECTS
-    -----------------------------------------------------------------------------------------
 
+    -- Insert the background image
+    --bkg_image = display.newImageRect("Images/level1_screen.png", display.contentWidth, display.contentHeight)
+    --bkg_image.x = display.contentCenterX
+    --bkg_image.y = display.contentCenterY
+    --bkg_image.width = display.contentWidth
+    --bkg_image.height = display.contentHeight
 
-end -- function scene:create( event )   
+    -- Send the background image to the back layer so all other objects can be on top
+    --bkg_image:toBack()
 
+        -- Insert background image into the scene group in order to ONLY be associated with this scene
+    --sceneGroup:insert( bkg_image ) 
 
+    -- set the background colour
+    display.setDefault("background", 0/255, 0/255, 0/255)   
+
+end --function scene:create( event )
 
 -----------------------------------------------------------------------------------------
 
@@ -70,29 +68,24 @@ function scene:show( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
-    -----------------------------------------------------------------------------------------
-
     local phase = event.phase
 
     -----------------------------------------------------------------------------------------
 
-    -- Called when the scene is still off screen (but is about to come on screen).   
     if ( phase == "will" ) then
-       
+
+        -- Called when the scene is still off screen (but is about to come on screen).
     -----------------------------------------------------------------------------------------
 
-    -- Called when the scene is now on screen.
-    -- Insert code here to make the scene come alive.
-    -- Example: start timers, begin animation, play audio, etc.
-    elseif ( phase == "did" ) then  
+    elseif ( phase == "did" ) then
 
-    --play background music     
-    --easyChannel = audio.play(easy)
+        -- Called when the scene is now on screen.
+        -- Insert code here to make the scene come alive.
+        -- Example: start timers, begin animation, play audio, etc.
 
     end
 
-end -- function scene:show( event )
+end --function scene:show( event )
 
 -----------------------------------------------------------------------------------------
 
@@ -101,9 +94,6 @@ function scene:hide( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
-    -----------------------------------------------------------------------------------------
-
     local phase = event.phase
 
     -----------------------------------------------------------------------------------------
@@ -119,7 +109,7 @@ function scene:hide( event )
         -- Called immediately after scene goes off screen.
     end
 
-end -- function scene:hide( event )
+end --function scene:hide( event )
 
 -----------------------------------------------------------------------------------------
 
@@ -128,6 +118,8 @@ function scene:destroy( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
+
+    -----------------------------------------------------------------------------------------
 
     -- Called prior to the removal of scene's view ("sceneGroup").
     -- Insert code here to clean up the scene.
@@ -148,4 +140,3 @@ scene:addEventListener( "destroy", scene )
 -----------------------------------------------------------------------------------------
 
 return scene
-

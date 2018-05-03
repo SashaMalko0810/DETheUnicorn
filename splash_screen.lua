@@ -382,7 +382,10 @@ function scene:show( event )
         horseSoundChannel = audio.play(horseSound)
         
         -- Call the moveRosella function as soon as we enter the frame
-        Runtime:addEventListener("enterFrame", moveRosella)   
+        Runtime:addEventListener("enterFrame", moveRosella) 
+
+        -- Go to the main menu screen after the given time.
+        timer.performWithDelay ( 3000, gotoMainMenu)  
 
     end
 end 
