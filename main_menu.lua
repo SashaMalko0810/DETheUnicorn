@@ -100,7 +100,7 @@ function scene:create( event )
         {   
             -- Set its position on the screen relative to the screen size
             x = 500,
-            y = 50,
+            y = 60,
 
             width = 200,
             height = 100,
@@ -119,8 +119,8 @@ function scene:create( event )
     creditsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
-            x = 120,
-            y = 400,
+            x = 880,
+            y = 60,
 
             width = 200,
             height = 100,
@@ -140,7 +140,7 @@ function scene:create( event )
         {
             -- Set its position on the screen relative to the screen size
             x = 120,
-            y = 200,
+            y = 60,
 
             width = 200,
             height = 100,

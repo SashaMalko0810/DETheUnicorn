@@ -73,12 +73,12 @@ function scene:create( event )
     backButton = widget.newButton( 
     {
         -- Setting Position
-        x = 100,
-        y = 100,
+        x = 900,
+        y = 500,
 
         -- Setting Dimensions
-        -- width = 1000,
-        -- height = 106,
+        width = 200,
+        height = 100,
 
         -- Setting Visual Properties
         defaultFile = "Images/BackButtonUnpressed.png",
