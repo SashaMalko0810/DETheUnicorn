@@ -1,9 +1,9 @@
 -----------------------------------------------------------------------------------------
--- instructions_screen.lua
+-- credits_screen.lua
 -- Created by: Sasha Malko
 -- Special thanks to Wal Wal for helping in the design of this framework.
 -- Date: April 9, 2018
--- Description: This is the instructions page, displaying a back button to the main menu.
+-- Description: This is the credits page, displaying a back button to the main menu.
 -----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ local widget = require( "widget" )
 -----------------------------------------------------------------------------------------
 
 -- Naming Scene
-sceneName = "instructions_screen"
+sceneName = "credits_screen"
 
 -- Creating Scene Object
 scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
@@ -34,7 +34,7 @@ local backButton
 
 -- Creating Transitioning Function back to main menu
 local function BackTransition( )
-    composer.gotoScene( "main_menu", {effect = "slideLeft", time = 500})
+    composer.gotoScene( "main_menu", {effect = "slideRight", time = 500})
 end
 
 
@@ -53,21 +53,17 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    --bkg_image = display.newImageRect("Images/InstructionsScreen.png", display.contentWidth, display.contentHeight)
-    --bkg_image.x = display.contentCenterX
-    --bkg_image.y = display.contentCenterY
-    --bkg_image.width = display.contentWidth
-    --bkg_image.height = display.contentHeight
+    bkg_image = display.newImageRect("Images/credits_screen.png", display.contentWidth, display.contentHeight)
+    bkg_image.x = display.contentCenterX
+    bkg_image.y = display.contentCenterY
+    bkg_image.width = display.contentWidth
+    bkg_image.height = display.contentHeight
 
     -- Associating display objects with this scene 
-    --sceneGroup:insert( bkg_image )
+    sceneGroup:insert( bkg_image )
 
     -- Send the background image to the back layer so all other objects can be on top
-    --bkg_image:toBack()
-
-
-    -- set the background colour
-    display.setDefault("background", 0/255, 0/255, 0/255)
+    bkg_image:toBack()
 
     -----------------------------------------------------------------------------------------
     -- BUTTON WIDGETS
@@ -184,6 +180,5 @@ scene:addEventListener( "destroy", scene )
 -----------------------------------------------------------------------------------------
 
 return scene
-
 
 
