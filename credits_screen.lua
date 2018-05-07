@@ -1,8 +1,7 @@
 -----------------------------------------------------------------------------------------
 -- credits_screen.lua
 -- Created by: Sasha Malko
--- Special thanks to Wal Wal for helping in the design of this framework.
--- Date: April 9, 2018
+-- Date: May 4, 2018
 -- Description: This is the credits page, displaying a back button to the main menu.
 -----------------------------------------------------------------------------------------
 
@@ -117,8 +116,7 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then
         -- Called when the scene is now on screen.
-        -- Insert code here to make the scene come alive.
-        -- Example: start timers, begin animation, play audio, etc.
+
     end
 
 end -- function scene:show( event )
@@ -139,8 +137,6 @@ function scene:hide( event )
 
     if ( phase == "will" ) then
         -- Called when the scene is on screen (but is about to go off screen).
-        -- Insert code here to "pause" the scene.
-        -- Example: stop timers, stop animation, stop audio, etc.
 
     -----------------------------------------------------------------------------------------
 
@@ -160,10 +156,8 @@ function scene:destroy( event )
 
     -----------------------------------------------------------------------------------------
 
-
     -- Called prior to the removal of scene's view ("sceneGroup").
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
+
 
 end --function scene:destroy( event )
 
@@ -180,5 +174,3 @@ scene:addEventListener( "destroy", scene )
 -----------------------------------------------------------------------------------------
 
 return scene
-
-

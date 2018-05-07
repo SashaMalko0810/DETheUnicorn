@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------------------------
 -- main_menu.lua
 -- Created by: Sasha Malko
--- Date: April 9, 2018
--- Description: This is the main menu, displaying the credits, instructions & play buttons.
+-- Date: May 4, 2018
+-- Description: This is the main menu, displaying the credits, instructions & play button
 -----------------------------------------------------------------------------------------
 
 --hide the status bar
@@ -185,8 +185,6 @@ function scene:show( event )
     -----------------------------------------------------------------------------------------
 
     -- Called when the scene is now on screen.
-    -- Insert code here to make the scene come alive.
-    -- Example: start timers, begin animation, play audio, etc.
     elseif ( phase == "did" ) then  
 
     --play background music     
@@ -212,8 +210,6 @@ function scene:hide( event )
 
     if ( phase == "will" ) then
         -- Called when the scene is on screen (but is about to go off screen).
-        -- Insert code here to "pause" the scene.
-        -- Example: stop timers, stop animation, stop audio, etc.
 
     -----------------------------------------------------------------------------------------
 
@@ -230,10 +226,7 @@ function scene:destroy( event )
 
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
-
     -- Called prior to the removal of scene's view ("sceneGroup").
-    -- Insert code here to clean up the scene.
-    -- Example: remove display objects, save state, etc.
 
 end -- function scene:destroy( event )
 
