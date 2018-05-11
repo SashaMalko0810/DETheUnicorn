@@ -8,6 +8,12 @@
 --hide the status bar
 display.setStatusBar(display.HiddenStatusBar)
 
+--load physics
+local physics = require("physics")
+
+--start physics 
+physics.start()
+
 -----------------------------------------------------------------------------------------
 -- INITIALIZATIONS
 -----------------------------------------------------------------------------------------
@@ -38,6 +44,8 @@ local bkg_image
 local playButton
 local creditsButton
 local instructionsButton
+local settingsButton
+local unicorn
 
 --Sounds
 local easy = audio.loadSound("Sounds/easy.mp3")
@@ -63,6 +71,12 @@ end
 local function InstructionsTransition( )       
     composer.gotoScene( "instructions_screen", {effect = "slideDown", time = 500})
 end 
+----------------------------------------------------------------------------------------
+
+-- Creating Transition Function to Instructions Page
+local function SettingsTransition( ) 
+   composer.gotoScene( "settings_screen", {effect = "slideUp", time = 500})       
+end 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -80,10 +94,29 @@ function scene:create( event )
     -- Insert the background image and set it to the center of the screen
     bkg_image = display.newImage("Images/main_menu.png")
     bkg_image.x = display.contentCenterX
-    bkg_image.y = display.contentCenterY
+    bkg_image.y = 0
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
 
+    display.setDefault("background", 142/255, 223/255, 250/255)
+
+    --Create the ground
+    local ground = display.newImage("Images/BlueBackground.png", 0, 0)
+
+    --Set the x and y pos
+    ground.x = display.contentCenterX
+    ground.y = 847
+
+    --Change the width to be the same as the screen
+    ground.width = display.contentWidth
+
+    --Add to physics
+    physics.addBody(ground, "static", {friction=0.5, bounce=0.3})
+
+    --add to physics
+    physics.addBody(bkg_image, {density=1.0, friction=0.5, bounce=0.3})
+
+    timer.performWithDelay(0, bkg_image)
 
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
@@ -100,7 +133,7 @@ function scene:create( event )
         {   
             -- Set its position on the screen relative to the screen size
             x = 500,
-            y = 60,
+            y = 650,
 
             width = 200,
             height = 100,
@@ -156,10 +189,32 @@ function scene:create( event )
 
     -----------------------------------------------------------------------------------------
 
+         -- Creating instructions Button
+    settingsButton = widget.newButton( 
+        {
+            -- Set its position on the screen relative to the screen size
+            x = 500,
+            y = 60,
+
+            width = 200,
+            height = 100,
+
+            -- Insert the images here
+            defaultFile = "Images/SettingsButtonUnpressed.png",
+            overFile = "Images/SettingsButtonPressed.png",
+
+            -- When the button is released, call the Instructions transition function
+            onRelease = SettingsTransition
+        } ) 
+
+
+-----------------------------------------------------------------------------------------
+
     -- Associating button widgets with this scene
     sceneGroup:insert( playButton )
     sceneGroup:insert( creditsButton )
     sceneGroup: insert( instructionsButton )
+    sceneGroup: insert( settingsButton )
 
 end -- function scene:create( event )   
 
