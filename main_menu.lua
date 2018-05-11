@@ -48,7 +48,7 @@ local settingsButton
 local unicorn
 
 --Sounds
-local easy = audio.loadSound("Sounds/easy.mp3")
+local easy = audio.loadStream("Sounds/easy.mp3")
 local easyChannel
 
 -----------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ end
 
 -- Creating Transition Function to Instructions Page
 local function SettingsTransition( ) 
-   composer.gotoScene( "settings_screen", {effect = "slideUp", time = 500})       
+   composer.gotoScene( "settings_screen", {effect = "slideDown", time = 500})       
 end 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -210,6 +210,9 @@ function scene:create( event )
 
 -----------------------------------------------------------------------------------------
 
+    --play background music (we put it here since Create function executes only once)    
+    easyChannel = audio.play(easy, { channel=2, loops=-1 } )
+
     -- Associating button widgets with this scene
     sceneGroup:insert( playButton )
     sceneGroup:insert( creditsButton )
@@ -241,9 +244,7 @@ function scene:show( event )
 
     -- Called when the scene is now on screen.
     elseif ( phase == "did" ) then  
-
-    --play background music     
-    easyChannel = audio.play(easy)
+    
 
     end
 

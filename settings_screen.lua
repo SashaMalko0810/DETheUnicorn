@@ -26,6 +26,8 @@ scene = composer.newScene( sceneName ) -- This function doesn't accept a string,
 -----------------------------------------------------------------------------------------
 local bkg_image
 local backButton
+local musicButton
+local settingsText
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -38,9 +40,7 @@ end
 
 -- Creating Transitioning Function back to main menu
 local function MusicTransition( )
-  if musicButton.isVisible then 
-    audio.stop(easyChannel)
-   end
+    composer.gotoScene( "main_menu", {effect = "slideRight", time = 500})
 end
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -56,7 +56,7 @@ function scene:create( event )
     -- BACKGROUND AND DISPLAY OBJECTS
     -----------------------------------------------------------------------------------------
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImageRect("Images/bluebackground.png", display.contentWidth, display.contentHeight)
+    bkg_image = display.newImageRect("Images/BlueBackground.png", display.contentWidth, display.contentHeight)
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -98,7 +98,7 @@ function scene:create( event )
     musicButton = widget.newButton( 
     {
         -- Setting Position
-        x = 900,
+        x = 500,
         y = 500,
 
         -- Setting Dimensions
@@ -115,8 +115,12 @@ function scene:create( event )
     } )
 -----------------------------------------------------------------------------------------
 
-    -- Associating Buttons with this scene
-    sceneGroup:insert( MusicButton )
+
+        --the text that displays the question
+    settingsText = display.newText( "Settings" , 0, 0, nil, 50)
+    settingsText.x = 500
+    settingsText.y = 100
+    settingsText:setTextColor(0,0,0)
     
 end --function scene:create( event )
 
