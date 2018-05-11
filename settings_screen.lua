@@ -40,7 +40,7 @@ end
 
 -- Creating Transitioning Function back to main menu
 local function MusicTransition( )
-    composer.gotoScene( "main_menu", {effect = "slideRight", time = 500})
+    audio.pause(easy)
 end
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -116,7 +116,7 @@ function scene:create( event )
 -----------------------------------------------------------------------------------------
 
 
-        --the text that displays the question
+    --the text that displays the question
     settingsText = display.newText( "Settings" , 0, 0, nil, 50)
     settingsText.x = 500
     settingsText.y = 100
