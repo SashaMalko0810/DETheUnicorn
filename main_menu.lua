@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------------------------
 -- main_menu.lua
 -- Created by: Sasha Malko
--- Date: May 4, 2018
--- Description: This is the main menu, displaying the credits, instructions & play button
+-- Date: May 10, 2018
+-- Description: This is the main menu, displaying the credits, instructions, settings & play button
 -----------------------------------------------------------------------------------------
 
 --hide the status bar
@@ -39,17 +39,17 @@ local scene = composer.newScene( sceneName )
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
-
 local bkg_image
 local playButton
 local creditsButton
 local instructionsButton
 local settingsButton
-local unicorn
+local ground 
 
 --Sounds
 local easy = audio.loadStream("Sounds/easy.mp3")
 local easyChannel
+
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -64,18 +64,15 @@ end
 local function Level1ScreenTransition( )
     composer.gotoScene( "level1_screen", {effect = "zoomInOut", time = 1000})
 end    
-
 ----------------------------------------------------------------------------------------
-
 -- Creating Transition Function to Instructions Page
 local function InstructionsTransition( )       
     composer.gotoScene( "instructions_screen", {effect = "slideDown", time = 500})
 end 
 ----------------------------------------------------------------------------------------
-
--- Creating Transition Function to Instructions Page
+-- Creating Transition Function to Settings Page
 local function SettingsTransition( ) 
-   composer.gotoScene( "settings_screen", {effect = "slideDown", time = 500})       
+   composer.gotoScene( "settings_screen", {effect = "slideDown", time = 500}) 
 end 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -90,7 +87,6 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
     -- BACKGROUND IMAGE & STATIC OBJECTS
     -----------------------------------------------------------------------------------------
-
     -- Insert the background image and set it to the center of the screen
     bkg_image = display.newImage("Images/main_menu.png")
     bkg_image.x = display.contentCenterX
@@ -98,28 +94,31 @@ function scene:create( event )
     bkg_image.width = display.contentWidth
     bkg_image.height = display.contentHeight
 
+    --Setting the colour of the background 
     display.setDefault("background", 142/255, 223/255, 250/255)
 
     --Create the ground
-    local ground = display.newImage("Images/BlueBackground.png", 0, 0)
+    ground = display.newImage("Images/BlueBackground.png", 0, 0)
 
-    --Set the x and y pos
+    --Set the x and y pos for the ground 
     ground.x = display.contentCenterX
     ground.y = 847
 
-    --Change the width to be the same as the screen
+    --Change the width of the ground to be the same as the screen
     ground.width = display.contentWidth
 
-    --Add to physics
+    --Add the ground to physics
     physics.addBody(ground, "static", {friction=0.5, bounce=0.3})
 
-    --add to physics
+    --add the background image to physics
     physics.addBody(bkg_image, {density=1.0, friction=0.5, bounce=0.3})
 
+    --Set the timer to display the background image 
     timer.performWithDelay(0, bkg_image)
 
     -- Associating display objects with this scene 
     sceneGroup:insert( bkg_image )
+    sceneGroup:insert( ground )
 
     -- Send the background image to the back layer so all other objects can be on top
     bkg_image:toBack()
@@ -138,7 +137,7 @@ function scene:create( event )
             width = 200,
             height = 100,
 
-            -- Insert the images here
+            -- Inserting the images 
             defaultFile = "Images/PlayButtonUnpressed.png",
             overFile = "Images/PlayButtonPressed.png",
 
@@ -158,7 +157,7 @@ function scene:create( event )
             width = 200,
             height = 100,
 
-            -- Insert the images here
+            -- Inserting the images 
             defaultFile = "Images/CreditsButtonUnpressed.png",
             overFile = "Images/CreditsButtonPressed.png",
 
@@ -186,10 +185,9 @@ function scene:create( event )
             onRelease = InstructionsTransition
         } ) 
     
-
     -----------------------------------------------------------------------------------------
 
-         -- Creating instructions Button
+         -- Creating settings Button
     settingsButton = widget.newButton( 
         {
             -- Set its position on the screen relative to the screen size
@@ -199,19 +197,19 @@ function scene:create( event )
             width = 200,
             height = 100,
 
-            -- Insert the images here
+            -- Inserting the images 
             defaultFile = "Images/SettingsButtonUnpressed.png",
             overFile = "Images/SettingsButtonPressed.png",
 
-            -- When the button is released, call the Instructions transition function
+            -- When the button is released, call the Settings transition function
             onRelease = SettingsTransition
         } ) 
 
 
 -----------------------------------------------------------------------------------------
 
-    --play background music (we put it here since Create function executes only once)    
-    easyChannel = audio.play(easy, { channel=2, loops=-1 } )
+    --play background music     
+    easyChannel = audio.play(easy, {channel = 2, loops = -1})
 
     -- Associating button widgets with this scene
     sceneGroup:insert( playButton )

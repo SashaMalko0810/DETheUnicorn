@@ -2,7 +2,7 @@
 --
 -- level1_screen.lua
 -- Created by: Sasha Malko
--- Date: May 4, 2018
+-- Date: May 10, 2018
 -- Description: This is the level 1 screen of the game.
 -----------------------------------------------------------------------------------------
 

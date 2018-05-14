@@ -1,7 +1,7 @@
 -----------------------------------------------------------------------------------------
 -- credits_screen.lua
 -- Created by: Sasha Malko
--- Date: May 4, 2018
+-- Date: May 10, 2018
 -- Description: This is the credits page, displaying a back button to the main menu.
 -----------------------------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ local widget = require( "widget" )
 sceneName = "credits_screen"
 
 -- Creating Scene Object
-scene = composer.newScene( sceneName ) -- This function doesn't accept a string, only a variable containing a string
+scene = composer.newScene( sceneName ) 
 
 -----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
@@ -35,7 +35,6 @@ local backButton
 local function BackTransition( )
     composer.gotoScene( "main_menu", {effect = "slideRight", time = 500})
 end
-
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
